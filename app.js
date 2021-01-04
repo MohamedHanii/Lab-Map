@@ -4,6 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+var bodyParser = require("body-parser"),
+  mongoose = require("mongoose"),
+  User = require("./models/user"),
+  Dentist = require("./models/dentist"),
+  Technician = require("./models/technician"),
+  passport = require("passport"),
+  LocalStrategy = require("passport-local");
+
+// , methodOverride = require ("method-override");
+// Connection to MongoDB
+mongoose.connect("mongodb://localhost:27017/labmap", { useNewUrlParser: true });
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
