@@ -19,12 +19,13 @@ router.post("/",getTechnicians)
 async function getTechnicians(req,res){
     if(req.body.name.trim().length){
         console.log(req.body.name)
-        getTechnician(req.body.name).then(result => res.send(result))
+        getTechnician(req.body.name).then(result => res.render('search', { arr: result }))
         return
     }
-    let technicians = await User.find({isDentist: false});
-    console.log(technicians)
-    res.send(technicians)
+    let techs = await User.find({isDentist: false});
+    console.log(techs)
+    // res.send(technicians)
+    res.render('search', { arr: techs });
 }
 
 async function getTechnician(name,res){
