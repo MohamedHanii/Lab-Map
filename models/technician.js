@@ -6,7 +6,7 @@ var TechnicianSchema = new mongoose.Schema({
     expYears: Number,
     labID: Number,
     price: Number,
-    user: {
+    userID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }

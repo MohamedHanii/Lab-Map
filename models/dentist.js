@@ -5,7 +5,7 @@ var DentistSchema = new mongoose.Schema({
 
     position: String,
     medicalID: Number,
-    user: {
+    userID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }
