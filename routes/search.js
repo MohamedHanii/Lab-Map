@@ -2,20 +2,36 @@
 var express = require('express');
 var router = express.Router();
 
+let Technician = require("../models/technician");
+let User = require("../models/user")
 router.get("/health", healthCheck)
 
 
-function healthCheck(req,res){
-    res.send("healthy");
-    console.log("hello");
+async function healthCheck(req,res){
+
+    let user = await User.find({isDentist: false});
+    console.log(user)
+    res.send(user)
 }
 
-router.post("/",getAllTechnicians)
+router.post("/",getTechnicians)
 
-function getAllTechnicians(req,res){
+async function getTechnicians(req,res){
+    if(req.body.name.trim().length){
+        console.log(req.body.name)
+        getTechnician(req.body.name).then(result => res.send(result))
+        return
+    }
+    let technicians = await User.find({isDentist: false});
+    console.log(technicians)
+    res.send(technicians)
+}
 
-    console.log(req.body)
-
+async function getTechnician(name,res){
+    let nameRegex = new RegExp(`.*${name}.*`,"i")
+    let technicians = await User.find({ firstName: nameRegex, isDentist: false })
+    console.log(technicians);
+    return technicians
 }
 
 module.exports = router;
