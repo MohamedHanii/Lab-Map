@@ -1,27 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-end p-3">
     <div class="container">
-        <a class="navbar-brand" href="#">Lab Map</a>
+        <a class="navbar-brand" href="/">Lab Map</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="/login">Sign In</a>
-                <a class="nav-link" href="/registration">Sign Up</a>
-                <a class="nav-link" href="#">Notification</a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav  ">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        Profile Name
+                        <%=currentUser.firstName%>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="#">My Profile</a></li>
+                        <li><a class="dropdown-item" href="/profile/<%=currentUser._id%>">My Profile</a></li>
                         <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </li>
-
-
             </div>
         </div>
     </div>
