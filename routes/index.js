@@ -100,7 +100,7 @@ router.post('/registration', function (req, res, next) {
 
 
 /* GET profile page. */
-router.get("/profile/:id", function (req, res, next) {
+router.get("/profile/:id", middleware.checkProfileOwnerShip, function (req, res, next) {
   // get user using user id
   // if user id not found throw an error
   let user = {
