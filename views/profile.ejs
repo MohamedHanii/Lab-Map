@@ -11,9 +11,9 @@
 
     <span class="mt-5 d-inline-block"
       title="<%=
-    user.userType=='dentist' ? "Medical ID" : "Lab ID"%>"
+    user.isDentist ? "Medical ID" : "Lab ID"%>"
       ><i title="verified" class="fas fa-check-circle"></i> <%=
-      user.userType=='dentist' ? user.medicalId : user.labId%></span
+      user.isDentist ? user.medicalId : user.labId%></span
     >
     <div>
         <h1 class="d-inline-block pe-3"><%=user.firstName%> <%=user.lastName%></h1>
@@ -22,10 +22,12 @@
   </div>
 </div>
 
-<div class="container mb-5">
+<div class="container">
     <div class="my-2">
         <h4 class="d-inline-block py-2">Personal information</h4>
-        <a href="#" class="btn btn-link float-end">edit</a>
+        <%if (user.currentUser) { %>
+            <a href="/edit_profile" class="btn btn-link float-end">edit</a>
+        <% } %>
     </div>
     <div class="row">
         <div class="col-sm">
@@ -49,9 +51,13 @@
             </dl>
         </div>
     </div>
+    
+    <%if (!user.isDentist) { %>
     <div class="my-2">
         <h4 class="d-inline-block py-2">Portfolio</h4>
-        <a href="#" class="btn btn-link float-end">add to Portfolio</a>
+        <%if (user.currentUser) { %>
+            <a href="#" class="btn btn-link float-end">add to Portfolio</a>
+        <% } %>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -65,6 +71,7 @@
               </div>
         </div>
     </div>
+    <% } %>
 </div>
 
 <%- include ("partials/footer.ejs") %>

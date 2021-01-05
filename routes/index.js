@@ -21,7 +21,7 @@ router.get("/profile/:id", function (req, res, next) {
   // get user using user id
   // if user id not found throw an error
   let user = {
-    userType: "dentist",
+    isDentist: true,
     firstName: "ahmed",
     lastName: "tarek",
     medicalId: "123456",
@@ -30,11 +30,35 @@ router.get("/profile/:id", function (req, res, next) {
     phone2: "010987654321",
     city: "alexandria",
     neighbourhood: "xyz",
-    address: "abc",
+    streetAddress: "abc",
     graduatedFrom: "collage",
     userName: "username",
+    currentUser: true,
   };
   res.render("profile", { title: "profile", user });
+});
+
+/* GET edit profile page. */
+router.get("/edit_profile", function (req, res, next) {
+  // get authenicated user
+  // if no user is logged in redirect
+  let user = {
+    id: "123",
+    isDentist: true,
+    firstName: "ahmed",
+    lastName: "tarek",
+    medicalId: "123456",
+    email: "ahmedtarek@outlook.com",
+    phone1: "010123456789",
+    phone2: "010987654321",
+    city: "alexandria",
+    neighbourhood: "xyz",
+    streetAddress: "abc",
+    graduatedFrom: "collage",
+    userName: "username",
+    currentUser: true,
+  };
+  res.render("profile_edit", { title: "profile", user });
 });
 
 module.exports = router;
