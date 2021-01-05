@@ -3,6 +3,7 @@ var router = express.Router();
 
 
 var passport = require("passport");
+const middlewareObj = require('../middleware');
 var middleware = require("../middleware");
 
 
@@ -11,10 +12,10 @@ var User = require("../models/user"),
   Technician = require("../models/technician");
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', middlewareObj.isLoggedIn, function (req, res, next) {
   res.render('index', { title: 'Home' });
 });
-``
+
 /* GET login page. */
 router.get('/login', function (req, res, next) {
   res.render('login', { title: 'Login' });
@@ -46,6 +47,7 @@ router.post('/registration', function (req, res, next) {
   else
     var isDentist = true;
   console.log(req.body);
+
   var newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -60,6 +62,7 @@ router.post('/registration', function (req, res, next) {
     isDentist: isDentist
   });
 
+  // encoding
   User.register(newUser, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
