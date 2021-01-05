@@ -1,7 +1,27 @@
 <%- include ("partials/header.ejs") %>
     <%- include ("partials/navbar.ejs") %>
 
-        <h1>Welcome Page</h1>
+        <div class="container centerDiv">
+            <h1 class="text-center mb-5"> Search For Technician</h1>
+            <div class="row">
+                <form method="post" action="/search/">
+                    <div class="row">
+                        <div class="col-6">
+                            <input name="name" class="form-control " type="search" placeholder="Search for technician"
+                                aria-label="Search">
+                        </div>
+                        <div class="col-2">
+                            <input name="price" class="form-control " type="search" placeholder="Price"
+                                aria-label="Search">
+                        </div>
+                        <div class="col-2">
+                            <input name="exp" class="form-control" type="search" placeholder="Experience"
+                                aria-label="Search">
+                        </div>
 
-
-        <%- include ("partials/footer.ejs") %>
+                        <div class="col-2">
+                            <button class="btn btn-outline-success searcbtn" type="submit">Search</button>
+                        </div>
+                </form>
+            </div>
+        </div>
