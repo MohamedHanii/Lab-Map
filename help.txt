@@ -1,0 +1,14 @@
+async function getTechnicians(req,res){
+    if(req.body.name.trim().length){
+        console.log(req.body.name)
+        let technicians =  Technician.find({price: {$lt: req.body.name}}).populate("userID").exec(function (err, User) {
+            console.log(User);
+            res.render('search', { arr: User });
+        })
+        return
+    }
+    let techs = await User.find({isDentist: false});
+    console.log(techs)
+    // res.send(technicians)
+    res.render('search', { arr: techs });
+}

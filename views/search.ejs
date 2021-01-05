@@ -1,10 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
+
+	<title>Sign Up Form by Colorlib</title>
+
+	<!-- Font Icon -->
+	<link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+	<!-- Main css -->
+	<link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body>
+    <%- include ("partials/navbar.ejs") %>
 <% arr.forEach(function(tech){ %>
-            <div class="col-md-3 col-sm-6">
-                <div class="thumbnail">
-                    <div class="caption">
-                        <h4><%= tech.firstName %></h4>
-                    </div>
-                 </div>
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Technician Profile</h5>
+                    <p class="card-text"><%= "First Name: " + tech.firstName%></p>
+                    <p class="card-text"><%= "Last Name: " + tech.lastName%></p>
+                    <p class="card-text"><%= "Email: " + tech.email%></p>
+                    <p class="card-text"><%= "Phone: " + tech.phone1%></p>
+                    <p class="card-text"><%= "City: " + tech.city%></p>
+                    <p class="card-text"><%= "Neighbourhood: " + tech.neighbourhood%></p>
+                    <p class="card-text"><%= "Street Address: " + tech.streetAddress%></p>
+                    <p class="card-text"><%= "Graduated From: " + tech.graduatedFrom%></p>
+                    <!-- <p class="card-text"><%= "Price: " + tech.price%></p> -->
+                    <a href="#" class="btn btn-primary">Go to Profile</a>
+                </div>
             </div>
         <% }); %>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="javascripts/main.js"></script>
+</body>
+</html>
