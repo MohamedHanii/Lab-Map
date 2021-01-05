@@ -1,0 +1,143 @@
+<%- include ("partials/header.ejs") %> <%- include ("partials/navbar.ejs") %>
+
+<div class="bg-light">
+  <div class="container pt-4 pb-1">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item">
+          <a href="/profile/<%=user.id%>">User profile</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+          Update personal info
+        </li>
+      </ol>
+    </nav>
+
+    <div class="mt-5">
+      <h1 class="d-inline-block pe-3">Update personal info</h1>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div
+    class="alert alert-warning alert-dismissible fade show mt-4"
+    role="alert"
+  >
+    <strong>Holy guacamole!</strong> You should check in on some of those fields
+    below.
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <form class="my-2">
+    <div class="form-floating my-3">
+      <input
+        type="text"
+        class="form-control"
+        id="firstname"
+        placeholder="First name"
+        value="<%=user.firstName%>"
+        required
+      />
+      <label for="firstname">First name</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="lastname"
+        placeholder="Last name"
+        value="<%=user.lastName%>"
+        required
+      />
+      <label for="lastname">Last name</label>
+    </div>
+    <h4>Contact information</h4>
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="name@example.com"
+        value="<%=user.email%>"
+        required
+      />
+      <label for="email">Email address</label>
+    </div>
+    <div class="form-floating my-3">
+      <input
+        type="text"
+        class="form-control"
+        id="phone1"
+        placeholder="phone1"
+        value="<%=user.phone1%>"
+        required
+      />
+      <label for="phone1">Primary phone</label>
+    </div>
+    <div class="form-floating my-3">
+      <input
+        type="text"
+        class="form-control"
+        id="phone2"
+        placeholder="phone2"
+        value="<%=user.phone2%>"
+      />
+      <label for="phone2">Secondary phone</label>
+    </div>
+    <h4>Address</h4>
+    <div class="form-floating my-3">
+      <input
+        type="text"
+        class="form-control"
+        id="street"
+        placeholder="street"
+        value="<%=user.address%>"
+        required
+      />
+      <label for="street">Street address</label>
+    </div>
+    <div class="form-floating my-3">
+      <input
+        type="text"
+        class="form-control"
+        id="neighbourhood"
+        placeholder="neighbourhood"
+        value="<%=user.neighbourhood%>"
+        required
+      />
+      <label for="neighbourhood">Neighbourhood</label>
+    </div>
+    <div class="form-floating my-3">
+      <input
+        type="text"
+        class="form-control"
+        id="city"
+        placeholder="city"
+        value="<%=user.city%>"
+        required
+      />
+      <label for="city">City</label>
+    </div>
+    <h4>Education</h4>
+    <div class="form-floating my-3">
+      <input
+        type="text"
+        class="form-control"
+        id="graduatedFrom"
+        placeholder="graduatedFrom"
+        value="<%=user.graduatedFrom%>"
+        required
+      />
+      <label for="graduatedFrom">Graduated from</label>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Update" />
+  </form>
+</div>
+
+<%- include ("partials/footer.ejs") %>
