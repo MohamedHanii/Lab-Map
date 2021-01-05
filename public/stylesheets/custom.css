@@ -1,0 +1,6 @@
+.bg-cover {
+  background: no-repeat center center;
+  background-size: cover;
+  height: 135px;
+  display: block;
+}
