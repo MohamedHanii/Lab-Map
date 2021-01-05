@@ -20,7 +20,7 @@ router.get("/registration", function (req, res, next) {
 router.get("/profile/:id", function (req, res, next) {
   // get user using user id
   // if user id not found throw an error
-  let user = {
+  let dentist_example = {
     isDentist: true,
     firstName: "ahmed",
     lastName: "tarek",
@@ -35,7 +35,22 @@ router.get("/profile/:id", function (req, res, next) {
     userName: "username",
     currentUser: true,
   };
-  res.render("profile", { title: "profile", user });
+  let technician_example = {
+    isDentist: false,
+    firstName: "ahmed",
+    lastName: "tarek",
+    labId: "123456",
+    email: "ahmedtarek@outlook.com",
+    phone1: "010123456789",
+    phone2: "010987654321",
+    city: "alexandria",
+    neighbourhood: "xyz",
+    streetAddress: "abc",
+    graduatedFrom: "collage",
+    userName: "username",
+    currentUser: false,
+  };
+  res.render("profile", { title: "profile", user: dentist_example });
 });
 
 /* GET edit profile page. */
