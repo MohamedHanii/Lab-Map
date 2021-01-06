@@ -12,6 +12,7 @@ var bodyParser = require("body-parser"),
   User = require("./models/user"),
   Dentist = require("./models/dentist"),
   Technician = require("./models/technician")
+flash = require("connect-flash")
 
 
 
@@ -37,6 +38,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
 
 
 
@@ -47,7 +49,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require("express-session")({
   secret: "secret",
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }));
 
 app.use(passport.initialize());
@@ -60,6 +62,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
+  res.locals.errormess = req.flash("error");
+  res.locals.successmess = req.flash("success");
   next();
 });
 

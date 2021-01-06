@@ -12,7 +12,7 @@ var User = require("../models/user"),
   Technician = require("../models/technician");
 
 /* GET home page. */
-router.get('/', middlewareObj.isLoggedIn, function (req, res, next) {
+router.get('/', middlewareObj.isLoggedIn, middlewareObj.isDoctor, function (req, res, next) {
   res.render('index', { title: 'Home' });
 });
 
@@ -25,6 +25,9 @@ router.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
   function (req, res) {
+    // if (failureRedirect) {
+    //   req.flash("error", "Username or Password is Wrong");
+    // }
     res.redirect("/profile/" + req.user._id);
   }
 );
@@ -64,7 +67,7 @@ router.post("/registration", function (req, res, next) {
   // encoding
   User.register(newUser, req.body.password, function (err, user) {
     if (err) {
-      console.log(err);
+      // req.flash("error", err.message);
       return res.redirect("/registration");
     }
 

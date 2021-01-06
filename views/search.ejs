@@ -1,44 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
-
-	<title>Sign Up Form by Colorlib</title>
-
-	<!-- Font Icon -->
-	<link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
-
-	<!-- Main css -->
-	<link rel="stylesheet" href="stylesheets/style.css">
-</head>
-
-<body>
+<%- include ("partials/header.ejs") %>
     <%- include ("partials/navbar.ejs") %>
-<% arr.forEach(function(tech){ %>
-            <div class="card" style="width: 25rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Technician Profile</h5>
-                    <p class="card-text"><%= "First Name: " + tech.firstName%></p>
-                    <p class="card-text"><%= "Last Name: " + tech.lastName%></p>
-                    <p class="card-text"><%= "Email: " + tech.email%></p>
-                    <p class="card-text"><%= "Phone: " + tech.phone1%></p>
-                    <p class="card-text"><%= "City: " + tech.city%></p>
-                    <p class="card-text"><%= "Neighbourhood: " + tech.neighbourhood%></p>
-                    <p class="card-text"><%= "Street Address: " + tech.streetAddress%></p>
-                    <p class="card-text"><%= "Graduated From: " + tech.graduatedFrom%></p>
-                    <p class="card-text"><%= "Price: " + tech.price%></p>
-                    <p class="card-text"><%= "Experience Years: " + tech.expYears%></p>
-                    <a href="#" class="btn btn-primary">Go to Profile</a>
-                </div>
-            </div>
-        <% }); %>
 
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="javascripts/main.js"></script>
-</body>
-</html>
+
+        <div class="container mt-4 mb-4">
+            <h1 class="text-center mb-5"> Search For Technician</h1>
+            <div class="row">
+                <form method="post" action="/search/">
+                    <div class="row">
+                        <div class="col-6">
+                            <input name="name" class="form-control " type="search" placeholder="Search for technician"
+                                aria-label="Search">
+                        </div>
+                        <div class="col-2">
+                            <input name="price" class="form-control " type="search" placeholder="Price"
+                                aria-label="Search">
+                        </div>
+                        <div class="col-2">
+                            <input name="exp" class="form-control" type="search" placeholder="Experience"
+                                aria-label="Search">
+                        </div>
+
+                        <div class="col-2">
+                            <button class="btn btn-outline-success searcbtn" type="submit">Search</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <% arr.forEach(function(tech){ %>
+                <div class="card" style="width: 100%; height: 12rem; ">
+                    <div class="card-body">
+                        <h5 class="card-title" ">Technician Profile</h5>
+                        <p class=" card-text" style="float: left; margin-left: 4rem;">
+                            <%= "First Name: " + tech.firstName%>
+                                </p>
+                                <p class="card-text" style="float: left; margin-left: 4rem;">
+                                    <%= "Last Name: " + tech.lastName%>
+                                </p>
+                                <p class="card-text" style="float: left; margin-left: 4rem;">
+                                    <%= "Email: " + tech.email%>
+                                </p>
+                                <p class="card-text" style="float: left; margin-left: 4rem; margin-right: 4rem">
+                                    <%= "Phone: " + tech.phone1%>
+                                </p>
+                                <p class="card-text" style="float: none; margin-left: 4rem;">
+                                    <%= "City: " + tech.city%>
+                                </p>
+                                <p class="card-text" style="float: left; margin-left: 4rem;">
+                                    <%= "Neighbourhood: " + tech.neighbourhood%>
+                                </p>
+                                <p class="card-text" style="float: left; margin-left: 4rem;">
+                                    <%= "Street Address: " + tech.streetAddress%>
+                                </p>
+                                <p class="card-text" style="float: left; margin-left: 4rem;">
+                                    <%= "Graduated From: " + tech.graduatedFrom%>
+                                </p>
+                                <p class="card-text" style="float: left; margin-left: 4rem;">
+                                    <%= "Price: " + tech.price%>
+                                </p>
+                                <p class="card-text" style="float: left; margin-left: 4rem; margin-right: 30rem">
+                                    <%= "Experience Years: " + tech.expYears%>
+                                </p>
+                                <a href="#" class="btn btn-dark" style="float:right;">Go to Profile</a>
+                    </div>
+                </div>
+                <br>
+                <% }); %>
+        </div>
+
+        <%- include ("partials/footer.ejs") %>

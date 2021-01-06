@@ -27,6 +27,8 @@ middlewareObj.checkProfileOwnerShip = function (req, res, next) {
     }
 }
 
+
+
 middlewareObj.isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -35,6 +37,24 @@ middlewareObj.isLoggedIn = function (req, res, next) {
     res.redirect("/login")
 
 }
+middlewareObj.isDoctor = function (req, res, next) {
+
+    Users.findById(req.user._id, function (err, ownerUser) {
+        console.log("===============");
+        console.log(ownerUser);
+
+        console.log("===============");
+        if (err) {
+            res.render("error");
+        }
+        if (ownerUser.isDentist) {
+            return next();
+        }
+        // req.flash("error","You Need to be Login First!");
+        res.redirect("/profile/" + ownerUser._id);
+    })
+}
+
 middlewareObj.LoggedIn = function (req, res, next) {
     if (!req.isAuthenticated()) {
         return next();
