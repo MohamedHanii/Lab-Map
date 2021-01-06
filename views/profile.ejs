@@ -1,14 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include ("partials/header.ejs") %> <%- include ("partials/navbar.ejs") %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<div class="bg-light">
+  <div class="container pt-4 pb-1">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">User profile</li>
+      </ol>
+    </nav>
 
-<body>
-    <h1>This is Profile page</h1>
-</body>
+    <span class="mt-5 d-inline-block"
+      title="<%=
+    user.isDentist ? "Medical ID" : "Lab ID"%>"
+      ><i title="verified" class="fas fa-check-circle"></i> <%=
+      user.isDentist ? user.medicalId : user.labId%></span
+    >
+    <div>
+        <h1 class="d-inline-block pe-3"><%=user.firstName%> <%=user.lastName%></h1>
+        <span class="h5">@<%=user.username%></span>
+    </div>
+  </div>
+</div>
 
-</html>
+<div class="container">
+    <div class="my-2">
+        <h4 class="d-inline-block py-2">Personal information</h4>
+        <%if (user.currentUser) { %>
+            <a href="/edit_profile" class="btn btn-link float-end">edit</a>
+        <% } %>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <dl>
+                <dt class="pb-2">Contact information</dt>
+                <dd>email: <%=user.email%></dd>
+                <dd>phone1: <%=user.phone1%></dd>
+                <dd>phone2: <%=user.phone2%></dd>
+            </dl>
+        </div>
+        <div class="col-sm">
+            <dl>
+                <dt class="pb-2">Address</dt>
+                <dd><%=user.city%>, <%=user.neighbourhood%>, <%=user.streetAddress%></dd>
+            </dl>
+        </div>
+        <div class="col-sm">
+            <dl>
+                <dt class="pb-2">Education</dt>
+                <dd>graduated from: <%=user.graduatedFrom%></dd>
+            </dl>
+        </div>
+    </div>
+    
+    <%if (!user.isDentist) { %>
+    <div class="my-2">
+        <h4 class="d-inline-block py-2">Portfolio</h4>
+        <%if (user.currentUser) { %>
+            <a href="#" class="btn btn-link float-end">add to Portfolio</a>
+        <% } %>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <div class="bg-cover" style="background-image: url(https://via.placeholder.com/150);"></div>
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+<%- include ("partials/footer.ejs") %>

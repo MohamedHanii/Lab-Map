@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "scss": "node-sass --watch public/scss -o public/stylesheets"
   },
   "dependencies": {
     "@popperjs/core": "^2.6.0",
@@ -17,9 +18,13 @@
     "jade": "~1.11.0",
     "mongoose": "^5.11.9",
     "morgan": "~1.9.1",
+    "node-sass": "^5.0.0",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }

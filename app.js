@@ -2,18 +2,21 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+
+var passport = require("passport");
+var LocalStrategy = require("passport-local");
 
 
 var bodyParser = require("body-parser"),
   mongoose = require("mongoose"),
   User = require("./models/user"),
   Dentist = require("./models/dentist"),
-  Technician = require("./models/technician"),
-  passport = require("passport"),
-  LocalStrategy = require("passport-local");
+  Technician = require("./models/technician")
+
+
 
 // , methodOverride = require ("method-override");
+
 // Connection to MongoDB
 mongoose.connect("mongodb://localhost:27017/labmap", { useNewUrlParser: true });
 
@@ -28,38 +31,41 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/profile', profileRouter);
+
+
+
+
 
 //=============== Passport Configuration ============
 app.use(require("express-session")({
-  secret: "Good ahead",
+  secret: "secret",
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 
 app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   next();
 });
 
-
-
-
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/profile', profileRouter);
 
 app.use('/search', searchRouter);
 
